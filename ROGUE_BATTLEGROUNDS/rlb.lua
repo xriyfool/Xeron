@@ -2394,7 +2394,7 @@ if game.PlaceId == 100010170789226 then
         end
     end
     
-    local repo = "https://raw.githubusercontent.com/heisenburgah/HYDROXIDE/refs/heads/main/"
+    local repo = "https://raw.githubusercontent.com/xriyfool/HYDROXIDE/refs/heads/main/"
     --[[
     local success, library_func = pcall(function()
         return loadstring(readfile("Library.txt"))()
