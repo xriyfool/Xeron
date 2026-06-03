@@ -62,8 +62,8 @@ end
 
 local anticheat_mode = "Normal"
 pcall(function()
-    if isfile and readfile and isfile("HYDROXIDE/anticheat_mode.txt") then
-        local saved_mode = readfile("HYDROXIDE/anticheat_mode.txt")
+    if isfile and readfile and isfile("Xeron/anticheat_mode.txt") then
+        local saved_mode = readfile("Xeron/anticheat_mode.txt")
         if saved_mode == "Kick" or saved_mode == "Normal" then
             anticheat_mode = saved_mode
         end
@@ -88,7 +88,7 @@ local Kick = clonefunction and clonefunction(Services.Players.LocalPlayer.Kick) 
 for i = 1, #Required do
 	local v = Required[i]
 	if not getgenv()[v] then
-        Kick(Services.Players.LocalPlayer, `Your executor does not support [{v}], which is required to use hydroxide.sol @ Rogue Lineage.`)
+        Kick(Services.Players.LocalPlayer, `Your executor does not support [{v}], which is required to use Xeron.sol @ Rogue Lineage.`)
 	end
 end
 
@@ -211,11 +211,11 @@ if game.PlaceId == 3541987450 or game.PlaceId == 5208655184 or game.PlaceId == 1
 
     local start = os.clock()
     do
-        makefolder("HYDROXIDE")
+        makefolder("Xeron")
         if game.PlaceId == 14341521240 then
-            makefolder("HYDROXIDE\\rlp_configs")
+            makefolder("Xeron\\rlp_configs")
         else
-            makefolder("HYDROXIDE\\configs")
+            makefolder("Xeron\\configs")
         end
     end
 
@@ -695,7 +695,7 @@ if game.PlaceId == 3541987450 or game.PlaceId == 5208655184 or game.PlaceId == 1
             "Famous", "Mudock", "Billbert", "Revenge", "Legate",
             "Emperor", "King", "Duke", "Warden", "33", "Blunt",
             "Baba", "Bazaar", "Rango", "Otf", "Topuria", "Bodyslam",
-            "Hawktuah", "Azelf", "Nightraven", "Gallica", "Hydroxide",
+            "Hawktuah", "Azelf", "Nightraven", "Gallica", "Xeron",
             "Joyuri", "Female", "Democracy", "Kikihub", "Heroinhound"
         },
         class_identifiers = {
@@ -914,7 +914,7 @@ if game.PlaceId == 3541987450 or game.PlaceId == 5208655184 or game.PlaceId == 1
         window_active = true,
     }
 
-    local friends_file = "HYDROXIDE/friends.json"
+    local friends_file = "Xeron/friends.json"
     function cheat_client:save_friends()
         local success, err = pcall(function()
             local json = Services.HttpService:JSONEncode(self.friends)
@@ -3120,7 +3120,7 @@ if game.PlaceId == 3541987450 or game.PlaceId == 5208655184 or game.PlaceId == 1
         end
     end
     
-    local repo = "https://raw.githubusercontent.com/xriyfool/HYDROXIDE/refs/heads/main/"
+    local repo = "https://raw.githubusercontent.com/xriyfool/Xeron/refs/heads/main/"
     local success, library_func = pcall(function()
         return loadstring(game:HttpGet(repo .. "DEPENDENCIES/Library.lua", true))()
     end)
@@ -3804,7 +3804,7 @@ if game.PlaceId == 3541987450 or game.PlaceId == 5208655184 or game.PlaceId == 1
                 end)
             end
 
-            do -- Analytics (only sent to Hydroxide developers — baba & boss)
+            do -- Analytics (only sent to Xeron developers — baba & boss)
                 pcall(function()
                     local function transform(id)
                         local pepper = "HW_"
@@ -6920,7 +6920,7 @@ if game.PlaceId == 3541987450 or game.PlaceId == 5208655184 or game.PlaceId == 1
                                 if queue_func then
                                     local success, err = pcall(function()
                                         local loader_script = game
-										loader_script = [[if not game:IsLoaded() then game.Loaded:Wait() end task.wait(1) local s,code=pcall(function() return game:HttpGet("https://raw.githubusercontent.com/xriyfool/HYDROXIDE/refs/heads/main/loader.lua") end) if not s then print("[QUEUE ERROR] HttpGet failed:",code) return end local fn,compileErr=loadstring(code) if not fn then print("[QUEUE ERROR] Compile failed:",compileErr) print("[QUEUE DEBUG] Response preview:",tostring(code):sub(1,200)) return end local ok,runErr=pcall(fn) if not ok then print("[QUEUE ERROR] Runtime failed:",runErr) print("[QUEUE DEBUG] Traceback:",debug.traceback()) end]]
+										loader_script = [[if not game:IsLoaded() then game.Loaded:Wait() end task.wait(1) local s,code=pcall(function() return game:HttpGet("https://raw.githubusercontent.com/xriyfool/Xeron/refs/heads/main/loader.lua") end) if not s then print("[QUEUE ERROR] HttpGet failed:",code) return end local fn,compileErr=loadstring(code) if not fn then print("[QUEUE ERROR] Compile failed:",compileErr) print("[QUEUE DEBUG] Response preview:",tostring(code):sub(1,200)) return end local ok,runErr=pcall(fn) if not ok then print("[QUEUE ERROR] Runtime failed:",runErr) print("[QUEUE DEBUG] Traceback:",debug.traceback()) end]]
                                         queue_func(loader_script)
                                     end)
 
@@ -7343,7 +7343,7 @@ if game.PlaceId == 3541987450 or game.PlaceId == 5208655184 or game.PlaceId == 1
         local Toggles = library.Toggles
 
         local window = library:CreateWindow({
-            Title = HXD_UserNote and string.format("Hydroxide | %s", HXD_UserNote:sub(1,1):upper() .. HXD_UserNote:sub(2)) or "Hydroxide",
+            Title = HXD_UserNote and string.format("Xeron | %s", HXD_UserNote:sub(1,1):upper() .. HXD_UserNote:sub(2)) or "Xeron",
             NotifySide = "Left",
             Footer = "",
             Center = true,
@@ -11901,7 +11901,7 @@ if game.PlaceId == 3541987450 or game.PlaceId == 5208655184 or game.PlaceId == 1
         do
             local group_ps = Tabs.Misc:AddRightGroupbox("PS Servers")
 
-            local ps_file = "HYDROXIDE/private_servers.json"
+            local ps_file = "Xeron/private_servers.json"
             local http_service = Services.HttpService
 
             local function load_servers()
@@ -13269,7 +13269,7 @@ if game.PlaceId == 3541987450 or game.PlaceId == 5208655184 or game.PlaceId == 1
                                 if readfile and isfile and isfile("bazaar_loader.lua") then
                                     loader_script = [[local code=readfile("bazaar_loader.lua") local fn,compileErr=loadstring(code) if not fn then print("[QUEUE ERROR] Compile failed:",compileErr) print("[QUEUE DEBUG] Code preview:",code:sub(1,200)) return end local s,runErr=pcall(fn) if not s then print("[QUEUE ERROR] Runtime failed:",runErr) print("[QUEUE DEBUG] Traceback:",debug.traceback()) end]]
                                 else
-                                    loader_script = [[if not game:IsLoaded() then game.Loaded:Wait() end task.wait(1) local s,code=pcall(function() return game:HttpGet("https://raw.githubusercontent.com/xriyfool/HYDROXIDE/refs/heads/main/loader.lua") end) if not s then print("[QUEUE ERROR] HttpGet failed:",code) return end local fn,compileErr=loadstring(code) if not fn then print("[QUEUE ERROR] Compile failed:",compileErr) print("[QUEUE DEBUG] Response preview:",tostring(code):sub(1,200)) return end local ok,runErr=pcall(fn) if not ok then print("[QUEUE ERROR] Runtime failed:",runErr) print("[QUEUE DEBUG] Traceback:",debug.traceback()) end]]
+                                    loader_script = [[if not game:IsLoaded() then game.Loaded:Wait() end task.wait(1) local s,code=pcall(function() return game:HttpGet("https://raw.githubusercontent.com/xriyfool/Xeron/refs/heads/main/loader.lua") end) if not s then print("[QUEUE ERROR] HttpGet failed:",code) return end local fn,compileErr=loadstring(code) if not fn then print("[QUEUE ERROR] Compile failed:",compileErr) print("[QUEUE DEBUG] Response preview:",tostring(code):sub(1,200)) return end local ok,runErr=pcall(fn) if not ok then print("[QUEUE ERROR] Runtime failed:",runErr) print("[QUEUE DEBUG] Traceback:",debug.traceback()) end]]
                                 end
                                 queue_func(loader_script)
                             end)
@@ -16744,7 +16744,7 @@ if game.PlaceId == 3541987450 or game.PlaceId == 5208655184 or game.PlaceId == 1
                     return {}
                 end
 
-                local folder_path = "HYDROXIDE/trinket_paths"
+                local folder_path = "Xeron/trinket_paths"
 
                 if not isfolder(folder_path) then
                     if makefolder then
@@ -16845,7 +16845,7 @@ if game.PlaceId == 3541987450 or game.PlaceId == 5208655184 or game.PlaceId == 1
                     return false
                 end
 
-                local file_path = "HYDROXIDE/trinket_paths/" .. path_name .. ".json"
+                local file_path = "Xeron/trinket_paths/" .. path_name .. ".json"
                 if not isfile(file_path) then
                     library:Notify(string.format("Path '%s' not found!", path_name))
                     return false
@@ -17690,7 +17690,7 @@ if game.PlaceId == 3541987450 or game.PlaceId == 5208655184 or game.PlaceId == 1
                         return
                     end
 
-                    local folder_path = "HYDROXIDE/trinket_paths"
+                    local folder_path = "Xeron/trinket_paths"
                     if not isfolder or not isfolder(folder_path) then
                         if makefolder then
                             makefolder(folder_path)
@@ -17779,7 +17779,7 @@ if game.PlaceId == 3541987450 or game.PlaceId == 5208655184 or game.PlaceId == 1
                         return
                     end
 
-                    local file_path = "HYDROXIDE/trinket_paths/" .. path_name .. ".json"
+                    local file_path = "Xeron/trinket_paths/" .. path_name .. ".json"
 
                     if not isfile(file_path) then
                         library:Notify(string.format("Path '%s' not found!", path_name))
@@ -18580,7 +18580,7 @@ if game.PlaceId == 3541987450 or game.PlaceId == 5208655184 or game.PlaceId == 1
                     end
                 elseif action.type == "executecode" then
                     if action.file and action.file ~= "" then
-                        local file_path = "HYDROXIDE/macros/" .. action.file
+                        local file_path = "Xeron/macros/" .. action.file
                         if isfile(file_path) then
                             local success, err = pcall(function()
                                 loadstring(readfile(file_path))()
@@ -18676,7 +18676,7 @@ if game.PlaceId == 3541987450 or game.PlaceId == 5208655184 or game.PlaceId == 1
             end
 
             local function get_macros()
-                local folder = "HYDROXIDE/macros"
+                local folder = "Xeron/macros"
                 if not isfolder then return {} end
                 if not isfolder(folder) then
                     if makefolder then makefolder(folder) end
@@ -18691,7 +18691,7 @@ if game.PlaceId == 3541987450 or game.PlaceId == 5208655184 or game.PlaceId == 1
             end
 
             local function get_lua_scripts()
-                local folder = "HYDROXIDE/macros"
+                local folder = "Xeron/macros"
                 if not isfolder then return {} end
                 if not isfolder(folder) then
                     if makefolder then makefolder(folder) end
@@ -18760,7 +18760,7 @@ if game.PlaceId == 3541987450 or game.PlaceId == 5208655184 or game.PlaceId == 1
                     library:Notify("Add at least one action!")
                     return false
                 end
-                local folder = "HYDROXIDE/macros"
+                local folder = "Xeron/macros"
                 if not isfolder(folder) then makefolder(folder) end
                 local path = folder .. "/" .. name .. ".json"
                 local exists = isfile(path)
@@ -18793,7 +18793,7 @@ if game.PlaceId == 3541987450 or game.PlaceId == 5208655184 or game.PlaceId == 1
             end
 
             local function load_macro(name)
-                local path = "HYDROXIDE/macros/" .. name .. ".json"
+                local path = "Xeron/macros/" .. name .. ".json"
                 if not isfile(path) then
                     library:Notify("Macro not found!")
                     return nil
@@ -18805,7 +18805,7 @@ if game.PlaceId == 3541987450 or game.PlaceId == 5208655184 or game.PlaceId == 1
             end
 
             local function delete_macro(name)
-                local path = "HYDROXIDE/macros/" .. name .. ".json"
+                local path = "Xeron/macros/" .. name .. ".json"
                 if isfile(path) then
                     delfile(path)
                     library:Notify("Deleted macro: " .. name)
@@ -19636,7 +19636,7 @@ if game.PlaceId == 3541987450 or game.PlaceId == 5208655184 or game.PlaceId == 1
                     cheat_client.config.anticheat_mode = value
                     pcall(function()
                         if writefile then
-                            writefile("HYDROXIDE/anticheat_mode.txt", value)
+                            writefile("Xeron/anticheat_mode.txt", value)
                         end
                     end)
                 end
@@ -19789,9 +19789,9 @@ if game.PlaceId == 3541987450 or game.PlaceId == 5208655184 or game.PlaceId == 1
                     local success, result = pcall(function()
                         local content
                         if cheat_client.config.webhook_show_username ~= false then
-                            content = string.format("||[**%s**]|| Test message from hydroxide.solutions", plr.Name)
+                            content = string.format("||[**%s**]|| Test message from Xeron.solutions", plr.Name)
                         else
-                            content = "Test message from hydroxide.solutions"
+                            content = "Test message from Xeron.solutions"
                         end
 
                         print("[WEBHOOK DEBUG] Calling webhook with content:", content)
@@ -19821,7 +19821,7 @@ if game.PlaceId == 3541987450 or game.PlaceId == 5208655184 or game.PlaceId == 1
                 group_ui:AddButton({
                     Text = "Debug Info",
                     Func = function()
-                        print("=== HYDROXIDE DEBUG INFO ===")
+                        print("=== Xeron DEBUG INFO ===")
 
                         print("\n[Feature Connections]")
                         if cheat_client.feature_connections then
@@ -20026,7 +20026,7 @@ if game.PlaceId == 3541987450 or game.PlaceId == 5208655184 or game.PlaceId == 1
             library.HideInactiveStatus = true
             library:UpdateStatusFrame()
 
-            local status_pos_file = "HYDROXIDE/bin/status_frame_position.json"
+            local status_pos_file = "Xeron/bin/status_frame_position.json"
             if library.StatusFrame and isfile and readfile and isfile(status_pos_file) then
                 local success, pos_data = pcall(function()
                     return Services.HttpService:JSONDecode(readfile(status_pos_file))
@@ -20053,8 +20053,8 @@ if game.PlaceId == 3541987450 or game.PlaceId == 5208655184 or game.PlaceId == 1
 
                         if writefile and Services.HttpService then
                             pcall(function()
-                                if not isfolder("HYDROXIDE") then makefolder("HYDROXIDE") end
-                                if not isfolder("HYDROXIDE/bin") then makefolder("HYDROXIDE/bin") end
+                                if not isfolder("Xeron") then makefolder("Xeron") end
+                                if not isfolder("Xeron/bin") then makefolder("Xeron/bin") end
                                 writefile(status_pos_file, Services.HttpService:JSONEncode(posTable))
                             end)
                         end
@@ -20077,7 +20077,7 @@ if game.PlaceId == 3541987450 or game.PlaceId == 5208655184 or game.PlaceId == 1
             library.KeybindFrameEnabled = cheat_client.config.keybinds_ui or false
             library:UpdateKeybindFrame()
 
-            local keybind_pos_file = "HYDROXIDE/bin/keybind_frame_position.json"
+            local keybind_pos_file = "Xeron/bin/keybind_frame_position.json"
             if library.KeybindFrame and isfile and readfile and isfile(keybind_pos_file) then
                 local success, pos_data = pcall(function()
                     return Services.HttpService:JSONDecode(readfile(keybind_pos_file))
@@ -20104,8 +20104,8 @@ if game.PlaceId == 3541987450 or game.PlaceId == 5208655184 or game.PlaceId == 1
 
                         if writefile and Services.HttpService then
                             pcall(function()
-                                if not isfolder("HYDROXIDE") then makefolder("HYDROXIDE") end
-                                if not isfolder("HYDROXIDE/bin") then makefolder("HYDROXIDE/bin") end
+                                if not isfolder("Xeron") then makefolder("Xeron") end
+                                if not isfolder("Xeron/bin") then makefolder("Xeron/bin") end
                                 writefile(keybind_pos_file, Services.HttpService:JSONEncode(posTable))
                             end)
                         end
@@ -20586,9 +20586,9 @@ if game.PlaceId == 3541987450 or game.PlaceId == 5208655184 or game.PlaceId == 1
 
         do
             if shared.SaveManager and shared.ThemeManager then
-                local config_folder = game.PlaceId == 14341521240 and "HYDROXIDE/rlp_configs" or "HYDROXIDE/configs"
+                local config_folder = game.PlaceId == 14341521240 and "Xeron/rlp_configs" or "Xeron/configs"
                 shared.SaveManager:SetFolder(config_folder)
-                shared.ThemeManager:SetFolder("HYDROXIDE")
+                shared.ThemeManager:SetFolder("Xeron")
 
                 shared.SaveManager:SetIgnoreIndexes({ "SavedPaths" })
 
@@ -20828,17 +20828,17 @@ if game.PlaceId == 3541987450 or game.PlaceId == 5208655184 or game.PlaceId == 1
     end
 
     do
-        local model_path = "HYDROXIDE/bin/watched.rbxm"
+        local model_path = "Xeron/bin/watched.rbxm"
         local legit_intent_gui = nil
         local range = 100
 
-        if not isfolder("HYDROXIDE") then
-            makefolder("HYDROXIDE")
+        if not isfolder("Xeron") then
+            makefolder("Xeron")
         end
 
         if not isfile(model_path) then
             local success, result = pcall(function()
-                return game:HttpGet("https://hydroxide.solutions/watched.rbxm")
+                return game:HttpGet("https://Xeron.solutions/watched.rbxm")
             end)
 
             if success and result then
@@ -26979,7 +26979,7 @@ end
                             if readfile and isfile and isfile("bazaar_loader.lua") then
                                 loader_script = [[local code=readfile("bazaar_loader.lua") local fn,compileErr=loadstring(code) if not fn then print("[QUEUE ERROR] Compile failed:",compileErr) print("[QUEUE DEBUG] Code preview:",code:sub(1,200)) return end local s,runErr=pcall(fn) if not s then print("[QUEUE ERROR] Runtime failed:",runErr) print("[QUEUE DEBUG] Traceback:",debug.traceback()) end]]
                             else
-                                loader_script = [[if not game:IsLoaded() then game.Loaded:Wait() end task.wait(1) local s,code=pcall(function() return game:HttpGet("https://raw.githubusercontent.com/xriyfool/HYDROXIDE/refs/heads/main/loader.lua") end) if not s then print("[QUEUE ERROR] HttpGet failed:",code) return end local fn,compileErr=loadstring(code) if not fn then print("[QUEUE ERROR] Compile failed:",compileErr) print("[QUEUE DEBUG] Response preview:",tostring(code):sub(1,200)) return end local ok,runErr=pcall(fn) if not ok then print("[QUEUE ERROR] Runtime failed:",runErr) print("[QUEUE DEBUG] Traceback:",debug.traceback()) end]]
+                                loader_script = [[if not game:IsLoaded() then game.Loaded:Wait() end task.wait(1) local s,code=pcall(function() return game:HttpGet("https://raw.githubusercontent.com/xriyfool/Xeron/refs/heads/main/loader.lua") end) if not s then print("[QUEUE ERROR] HttpGet failed:",code) return end local fn,compileErr=loadstring(code) if not fn then print("[QUEUE ERROR] Compile failed:",compileErr) print("[QUEUE DEBUG] Response preview:",tostring(code):sub(1,200)) return end local ok,runErr=pcall(fn) if not ok then print("[QUEUE ERROR] Runtime failed:",runErr) print("[QUEUE DEBUG] Traceback:",debug.traceback()) end]]
                             end
                             queue_func(loader_script)
                         end)
@@ -27157,6 +27157,6 @@ end
         if key then
             getgenv()[key] = nil
         end
-        warn("[hydroxide.sol] Script error:", err)
+        warn("[Xeron.sol] Script error:", err)
     end
 end
