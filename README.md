@@ -1,5 +1,4 @@
-# Hydroxide
-
+# Xeron
 ![](https://img.shields.io/github/downloads/heisenburgah/HYDROXIDE/total?style=flat-square)
 ![](https://img.shields.io/github/last-commit/heisenburgah/HYDROXIDE?style=flat-square)
 ![](https://img.shields.io/badge/lines%20of%20code-~41%2C000-blue?style=flat-square)
@@ -26,7 +25,7 @@ _G.Cookie = "" -- optional: your own .ROBLOSECURITY token for Roblox API request
 
 pcall(function()
     loadstring(game:HttpGet(
-        "https://raw.githubusercontent.com/xriyfool/HYDROXIDE/refs/heads/main/loader.lua",
+        "https://raw.githubusercontent.com/xriyfool/Xeron/refs/heads/main/loader.lua",
         true
     ))()
 end)
@@ -42,7 +41,7 @@ getgenv().stella_debug = false
 
 pcall(function()
     loadstring(game:HttpGet(
-        "https://raw.githubusercontent.com/xriyfool/HYDROXIDE/refs/heads/main/hello_stella.lua",
+        "https://raw.githubusercontent.com/xriyfool/Xeron/refs/heads/main/hello_stella.lua",
         true
     ))()
 end)
