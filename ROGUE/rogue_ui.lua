@@ -4732,8 +4732,6 @@ if game.PlaceId == 3541987450 or game.PlaceId == 5208655184 or game.PlaceId == 1
                         return 'Goblet', cheat_client.trinket_colors.common.Color, cheat_client.trinket_colors.common.ZIndex
                     elseif (v.ClassName == 'MeshPart' and v.MeshId == 'rbxassetid://5196577540') then
                         return 'Old Amulet', cheat_client.trinket_colors.common.Color, cheat_client.trinket_colors.common.ZIndex
-	            	elseif (v.ClassName == 'MeshPart' and v.MeshId == 'rbxassetid://9') then
-                        return 'Idol of War', cheat_client.trinket_colors.common.Color, cheat_client.trinket_colors.common.ZIndex
                     elseif (v.ClassName == 'MeshPart' and v.MeshId == 'rbxassetid://5196551436') then
                         return 'Amulet', cheat_client.trinket_colors.common.Color, cheat_client.trinket_colors.common.ZIndex
                     elseif (v.ClassName == 'Part' and FindFirstChildWhichIsA(v, "SpecialMesh") and FindFirstChild(v, 'OrbParticle')) then
@@ -16591,7 +16589,7 @@ if game.PlaceId == 3541987450 or game.PlaceId == 5208655184 or game.PlaceId == 1
                     "Rift Gem", "Mysterious Artifact", "Phoenix Flower", "Azael Horn",
                     "Amulet of the White King", "Lannis's Amulet", "Phoenix Down", "Night Stone", "Howler Friend",
                     "???", "Scroll", "Diamond", "Emerald", "Ruby", "Sapphire", "Ice Essence", "Bound Book",
-                    "Idol of the Forgotten", "Old Ring", "Ring", "Goblet", "Old Amulet", "Amulet", "Opal", "Idol of War"
+                    "Idol of the Forgotten", "Old Ring", "Ring", "Goblet", "Old Amulet", "Amulet", "Opal"
                 },
                 Multi = true,
                 Default = {},
