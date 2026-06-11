@@ -24947,7 +24947,9 @@ end
                             object = object
                         })
 
-                        if not batch_timer then
+                        if not batch_timer and trinket_name == "Phoenix Down" then
+                            utility:sound("rbxassetid://138132180123464", 2)
+                            else
                             utility:sound("rbxassetid://6432593850", 2)
                         end
 
