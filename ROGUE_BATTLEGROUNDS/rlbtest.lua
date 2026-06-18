@@ -72,7 +72,7 @@ if game.PlaceId == 100010170789226 then
         end
     end
 
-      do -- Adonis Anti-Cheat Bypass
+
     
  LPH_NO_VIRTUALIZE(function()
     if game and not game:IsLoaded() then
