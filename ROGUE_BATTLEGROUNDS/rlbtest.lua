@@ -1,7 +1,7 @@
 if not game:IsLoaded() then
     game.Loaded:Wait()
 end
---hi
+
 pcall(function()
     if getconnections then
         for _,v in pairs(getconnections(game:GetService('ScriptContext').Error)) do
@@ -26,9 +26,27 @@ pcall(loadstring([[if not HXD_HWID then HXD_HWID="STUB_HWID" HXD_DISCORD_ID="123
 pcall(loadstring([[if not HXD_SANITIZE then function HXD_SANITIZE(value,pattern)if not value or not pattern then return""end;value=tostring(value)local charset=pattern:match("%[(.-)%]")if not charset then return""end;local _,max=pattern:match("{%s*(%d+)%s*,%s*(%d+)%s*}")local max_len=tonumber(max)or#value;local extra_chars="→←↑↓★☆"charset=charset:gsub("%]","%%]")value=value:gsub("[^"..charset..extra_chars.."]","")return value:sub(1,max_len)end end]]));
 pcall(loadstring([[if not HXD_SEND_WEBHOOK then function HXD_SEND_WEBHOOK(url,data)local req=http_request or request or syn.request;if not req then warn("[STUB] Webhook:",url)return true end;local HttpService=game:GetService("HttpService")local headers={["Content-Type"]="application/json"}local body=HttpService:JSONEncode(data)local response=req({Url=url,Method="POST",Headers=headers,Body=body})return response end end]]));
 
---hj
+local Required = {
+	"hookfunction",
+	"getconnections",
+	"hookmetamethod",
+	"bit32",
+	"getgenv",
+	"setmetatable",
+    "clonefunction",
+    "cloneref",
+    "getconnections",
+    "fireclickdetector",
+    "checkcaller"
+}
 
-
+local Kick = clonefunction and clonefunction(game:GetService("Players").LocalPlayer.Kick) or game:GetService("Players").LocalPlayer.Kick
+for i = 1, #Required do
+	local v = Required[i]
+	if not getgenv()[v] then
+        Kick(game:GetService("Players").LocalPlayer, `Your executor does not support [{v}], which is required to use Xeron.sol @ Rogue Lineage Battlegrounds.`)
+	end
+end
 
 local function process_string(str, salt)
     salt = salt or 27
@@ -63,7 +81,6 @@ if game.PlaceId == 100010170789226 then
     local success, err = xpcall(function()
         
     do -- Adonis Anti-Cheat Bypass
- 
         LPH_NO_VIRTUALIZE(function()
             if game and not game:IsLoaded() then
                 repeat wait() until game:IsLoaded()
