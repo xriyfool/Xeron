@@ -6,7 +6,7 @@ local HttpService = game:GetService("HttpService")
 
 local LoggerGui = {}
 LoggerGui.__index = LoggerGui
--- hi
+
 local HIGHLIGHT_WORDS = {
 	"clipped",
 	"clip",
