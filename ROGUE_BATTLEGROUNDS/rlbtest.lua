@@ -62,17 +62,8 @@ if game.PlaceId == 100010170789226 then
 
     local success, err = xpcall(function()
         
-  
-            task.defer(function()
-                for _, v in getgc(true) do
-                    if typeof(v) == "table" and rawget(v, "Kill") and typeof(v.Kill) == "function" then
-                        hookfunction(v.Kill, function(...)
-                            warn("kill() blocked imagine")
-                            return
-                        end)
-                    end
-                end
-            end)
+    do -- Adonis Anti-Cheat Bypass
+    
 
             local old_debug_info = debug.info
             hookfunction(debug.info, newcclosure(function(func, what)
