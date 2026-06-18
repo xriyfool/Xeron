@@ -62,41 +62,7 @@ if game.PlaceId == 100010170789226 then
 
     local success, err = xpcall(function()
         
-    do -- Adonis Anti-Cheat Bypass
-        LPH_NO_VIRTUALIZE(function()
-            if game and not game:IsLoaded() then
-                repeat wait() until game:IsLoaded()
-            end
-
-            local old_identity = getthreadidentity()
-
-            setthreadidentity(2) -- prevents "Adonis_0x16471" kick
-
-            task.spawn(function()
-                local patched = 0
-
-                for _, func in ipairs(getgc(true)) do
-                    if typeof(func) == "function" and islclosure(func) then
-                        local ok, consts = pcall(debug.getconstants, func)
-                        if ok and consts and #consts <= 2 then
-                            for i, c in ipairs(consts) do
-                                if tostring(c):lower():find("script") == nil and tostring(c):lower():find("rbx") == nil then
-                                    local src = debug.info(func, "s") or ""
-                                    if src:find("Anti") or src:lower():find("core") then
-                                        hookfunction(func, function(...)
-                                            warn("dont crash my nigga")
-                                            return
-                                        end)
-                                        patched += 1
-                                    end
-                                end
-                            end
-                        end
-                    end
-                end
-                warn("crash loop patch complete:", patched)
-            end)
-
+  
             task.defer(function()
                 for _, v in getgc(true) do
                     if typeof(v) == "table" and rawget(v, "Kill") and typeof(v.Kill) == "function" then
