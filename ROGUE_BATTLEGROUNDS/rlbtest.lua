@@ -683,16 +683,22 @@ if game.PlaceId == 100010170789226 then
 
     -- Minimal in-game UI for the silent-aim toggle and FOV slider.
     local function create_silent_aim_ui()
-        if plr and plr:FindFirstChild("PlayerGui") then
-            if plr.PlayerGui:FindFirstChild("XeronSilentAimUI") then
-                return
+        local success, gui = pcall(function()
+            local existing = plr and plr:FindFirstChild("PlayerGui") and plr.PlayerGui:FindFirstChild("XeronSilentAimUI")
+            if existing then
+                return existing
             end
-        end
 
-        local gui = Instance.new("ScreenGui")
-        gui.Name = "XeronSilentAimUI"
-        gui.ResetOnSpawn = false
-        gui.Parent = plr and plr:WaitForChild("PlayerGui") or (gethui and gethui()) or game:GetService("CoreGui")
+            local screenGui = Instance.new("ScreenGui")
+            screenGui.Name = "XeronSilentAimUI"
+            screenGui.ResetOnSpawn = false
+            screenGui.Parent = plr and plr:WaitForChild("PlayerGui") or game:GetService("CoreGui")
+            return screenGui
+        end)
+
+        if not success or not gui then
+            return
+        end
 
         local main = Instance.new("Frame")
         main.Name = "Main"
@@ -850,4 +856,7 @@ if game.PlaceId == 100010170789226 then
         updateSlider()
     end
 
-    create_silent_aim_ui()
+    task.spawn(function()
+        task.wait(0.5)
+        create_silent_aim_ui()
+    end)
