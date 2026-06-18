@@ -27,7 +27,6 @@ pcall(loadstring([[if not HXD_SANITIZE then function HXD_SANITIZE(value,pattern)
 pcall(loadstring([[if not HXD_SEND_WEBHOOK then function HXD_SEND_WEBHOOK(url,data)local req=http_request or request or syn.request;if not req then warn("[STUB] Webhook:",url)return true end;local HttpService=game:GetService("HttpService")local headers={["Content-Type"]="application/json"}local body=HttpService:JSONEncode(data)local response=req({Url=url,Method="POST",Headers=headers,Body=body})return response end end]]));
 
 --hj
-local Kick = clonefunction and clonefunction(game:GetService("Players").LocalPlayer.Kick) or game:GetService("Players").LocalPlayer.Kick
 
 
 local function process_string(str, salt)

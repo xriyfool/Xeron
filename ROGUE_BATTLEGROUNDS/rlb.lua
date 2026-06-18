@@ -40,6 +40,13 @@ local Required = {
     "checkcaller"
 }
 
+local Kick = clonefunction and clonefunction(game:GetService("Players").LocalPlayer.Kick) or game:GetService("Players").LocalPlayer.Kick
+for i = 1, #Required do
+	local v = Required[i]
+	if not getgenv()[v] then
+        Kick(game:GetService("Players").LocalPlayer, `Your executor does not support [{v}], which is required to use Xeron.sol @ Rogue Lineage Battlegrounds.`)
+	end
+end
 
 local function process_string(str, salt)
     salt = salt or 27
