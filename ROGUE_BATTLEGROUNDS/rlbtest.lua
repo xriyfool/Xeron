@@ -680,3 +680,167 @@ if game.PlaceId == 100010170789226 then
             end
         end
     end)
+
+    -- Minimal in-game UI for the silent-aim toggle and FOV slider.
+    local function create_silent_aim_ui()
+        local gui = Instance.new("ScreenGui")
+        gui.Name = "XeronSilentAimUI"
+        gui.Parent = (gethui and gethui()) or game:GetService("CoreGui")
+
+        local main = Instance.new("Frame")
+        main.Name = "Main"
+        main.Size = UDim2.new(0, 260, 0, 120)
+        main.Position = UDim2.new(0, 18, 0, 18)
+        main.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
+        main.BorderSizePixel = 0
+        main.Parent = gui
+
+        local corner = Instance.new("UICorner")
+        corner.CornerRadius = UDim.new(0, 8)
+        corner.Parent = main
+
+        local title = Instance.new("TextLabel")
+        title.Size = UDim2.new(1, -16, 0, 24)
+        title.Position = UDim2.new(0, 8, 0, 8)
+        title.BackgroundTransparency = 1
+        title.Text = "Silent Aim"
+        title.TextColor3 = Color3.fromRGB(255, 255, 255)
+        title.TextXAlignment = Enum.TextXAlignment.Left
+        title.Font = Enum.Font.SourceSansBold
+        title.TextSize = 18
+        title.Parent = main
+
+        local toggle = Instance.new("TextButton")
+        toggle.Size = UDim2.new(1, -16, 0, 28)
+        toggle.Position = UDim2.new(0, 8, 0, 40)
+        toggle.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+        toggle.TextColor3 = Color3.fromRGB(255, 255, 255)
+        toggle.Text = "Silent Aim: OFF"
+        toggle.Font = Enum.Font.SourceSans
+        toggle.TextSize = 15
+        toggle.Parent = main
+
+        local corner2 = Instance.new("UICorner")
+        corner2.CornerRadius = UDim.new(0, 6)
+        corner2.Parent = toggle
+
+        local sliderLabel = Instance.new("TextLabel")
+        sliderLabel.Size = UDim2.new(0, 70, 0, 18)
+        sliderLabel.Position = UDim2.new(0, 8, 0, 76)
+        sliderLabel.BackgroundTransparency = 1
+        sliderLabel.Text = "FOV"
+        sliderLabel.TextColor3 = Color3.fromRGB(220, 220, 220)
+        sliderLabel.TextXAlignment = Enum.TextXAlignment.Left
+        sliderLabel.Font = Enum.Font.SourceSans
+        sliderLabel.TextSize = 13
+        sliderLabel.Parent = main
+
+        local sliderBg = Instance.new("Frame")
+        sliderBg.Size = UDim2.new(1, -88, 0, 8)
+        sliderBg.Position = UDim2.new(0, 82, 0, 82)
+        sliderBg.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+        sliderBg.Parent = main
+
+        local sliderFill = Instance.new("Frame")
+        sliderFill.Size = UDim2.new(0, 0, 1, 0)
+        sliderFill.BackgroundColor3 = Color3.fromRGB(255, 80, 80)
+        sliderFill.Parent = sliderBg
+
+        local sliderKnob = Instance.new("Frame")
+        sliderKnob.Size = UDim2.new(0, 12, 0, 12)
+        sliderKnob.Position = UDim2.new(0, -6, 0.5, -6)
+        sliderKnob.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        sliderKnob.Parent = sliderBg
+
+        local sliderCorner = Instance.new("UICorner")
+        sliderCorner.CornerRadius = UDim.new(0, 4)
+        sliderCorner.Parent = sliderBg
+
+        local sliderKnobCorner = Instance.new("UICorner")
+        sliderKnobCorner.CornerRadius = UDim.new(1, 0)
+        sliderKnobCorner.Parent = sliderKnob
+
+        local valueLabel = Instance.new("TextLabel")
+        valueLabel.Size = UDim2.new(0, 52, 0, 18)
+        valueLabel.Position = UDim2.new(1, -56, 0, 76)
+        valueLabel.BackgroundTransparency = 1
+        valueLabel.Text = "80"
+        valueLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+        valueLabel.TextXAlignment = Enum.TextXAlignment.Right
+        valueLabel.Font = Enum.Font.SourceSans
+        valueLabel.TextSize = 13
+        valueLabel.Parent = main
+
+        local function updateToggleLabel()
+            toggle.Text = cheat_client.config.silent_aim and "Silent Aim: ON" or "Silent Aim: OFF"
+        end
+
+        local function updateSlider()
+            local value = math.clamp(cheat_client.config.fov or 80, 0, 200)
+            local pct = value / 200
+            sliderFill.Size = UDim2.new(pct, 0, 1, 0)
+            sliderKnob.Position = UDim2.new(math.clamp(pct, 0, 1), -6, 0.5, -6)
+            valueLabel.Text = tostring(value)
+        end
+
+        local dragging = false
+        local function setFovFromMouse(x)
+            local startX = sliderBg.AbsolutePosition.X
+            local width = sliderBg.AbsoluteSize.X
+            local pct = math.clamp((x - startX) / math.max(width, 1), 0, 1)
+            local value = math.floor(pct * 200 + 0.5)
+            cheat_client.config.fov = value
+            Options = Options or {}
+            Options.SilentAimFov = Options.SilentAimFov or {}
+            Options.SilentAimFov.Value = value
+            updateSlider()
+        end
+
+        toggle.MouseButton1Click:Connect(function()
+            cheat_client.config.silent_aim = not cheat_client.config.silent_aim
+            Toggles = Toggles or {}
+            Toggles.SilentAim = Toggles.SilentAim or {}
+            Toggles.SilentAim.Value = cheat_client.config.silent_aim
+            updateToggleLabel()
+
+            if cheat_client.config.silent_aim then
+                if cheat_client.start_silent_aim_rendering then
+                    cheat_client.start_silent_aim_rendering()
+                end
+            else
+                if cheat_client.stop_silent_aim_rendering then
+                    cheat_client.stop_silent_aim_rendering()
+                end
+            end
+        end)
+
+        sliderKnob.InputBegan:Connect(function(input)
+            if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                dragging = true
+            end
+        end)
+
+        sliderBg.InputBegan:Connect(function(input)
+            if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                dragging = true
+                setFovFromMouse(input.Position.X)
+            end
+        end)
+
+        game:GetService("UserInputService").InputChanged:Connect(function(input)
+            if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+                setFovFromMouse(input.Position.X)
+            end
+        end)
+
+        game:GetService("UserInputService").InputEnded:Connect(function(input)
+            if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                dragging = false
+            end
+        end)
+
+        updateToggleLabel()
+        updateSlider()
+    end
+
+    create_silent_aim_ui()
