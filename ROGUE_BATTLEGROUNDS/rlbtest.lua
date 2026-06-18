@@ -62,7 +62,7 @@ if game.PlaceId == 100010170789226 then
 
     local success, err = xpcall(function()
         
-  
+    do
 
     local start = os.clock()
     do
