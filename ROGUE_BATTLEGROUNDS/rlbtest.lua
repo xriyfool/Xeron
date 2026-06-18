@@ -384,9 +384,34 @@ if game.PlaceId == 100010170789226 then
             aimbot_hitboxes = 1,
             ignore_blocking = false,
             hide_fov_circle = false,
-    
         }
-}
+    }
+
+    -- Minimal UI wiring for the test script.
+    -- These keep the existing silent-aim logic working even when the full menu layer is not present.
+    Toggles = Toggles or {}
+    Options = Options or {}
+    Toggles.SilentAim = Toggles.SilentAim or { Value = cheat_client.config.silent_aim }
+    Toggles.IgnoreBlocking = Toggles.IgnoreBlocking or { Value = cheat_client.config.ignore_blocking }
+    Toggles.HideFovCircle = Toggles.HideFovCircle or { Value = cheat_client.config.hide_fov_circle }
+    Options.SilentAimFov = Options.SilentAimFov or { Value = cheat_client.config.fov }
+
+    local function sync_silent_aim_controls()
+        if Toggles and Toggles.SilentAim then
+            Toggles.SilentAim.Value = cheat_client.config.silent_aim
+        end
+        if Toggles and Toggles.IgnoreBlocking then
+            Toggles.IgnoreBlocking.Value = cheat_client.config.ignore_blocking
+        end
+        if Toggles and Toggles.HideFovCircle then
+            Toggles.HideFovCircle.Value = cheat_client.config.hide_fov_circle
+        end
+        if Options and Options.SilentAimFov then
+            Options.SilentAimFov.Value = cheat_client.config.fov
+        end
+    end
+
+    sync_silent_aim_controls()
 
             -- Grapple Parry
             local function setup_grapple_parry()
