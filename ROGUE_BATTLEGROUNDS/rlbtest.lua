@@ -81,6 +81,11 @@ if game.PlaceId == 100010170789226 then
     local success, err = xpcall(function()
         
     do -- Adonis Anti-Cheat Bypass
+    local adonis = game:GetService("CoreGui"):FindFirstChild("Adonis")
+if adonis then
+    local ac = adonis:FindFirstChild("AntiCheat")
+    if ac then ac:Destroy() end
+end
         LPH_NO_VIRTUALIZE(function()
             if game and not game:IsLoaded() then
                 repeat wait() until game:IsLoaded()
