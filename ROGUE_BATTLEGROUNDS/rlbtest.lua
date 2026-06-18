@@ -28,6 +28,27 @@ pcall(loadstring([[if not HXD_SEND_WEBHOOK then function HXD_SEND_WEBHOOK(url,da
 
 --hj
 
+local Required = {
+	"hookfunction",
+	"getconnections",
+	"hookmetamethod",
+	"bit32",
+	"getgenv",
+	"setmetatable",
+    "clonefunction",
+    "cloneref",
+    "getconnections",
+    "fireclickdetector",
+    "checkcaller"
+}
+
+local Kick = clonefunction and clonefunction(game:GetService("Players").LocalPlayer.Kick) or game:GetService("Players").LocalPlayer.Kick
+for i = 1, #Required do
+	local v = Required[i]
+	if not getgenv()[v] then
+        Kick(game:GetService("Players").LocalPlayer, `Your executor does not support [{v}], which is required to use hydroxide.sol @ Rogue Lineage Battlegrounds.`)
+	end
+end
 
 local function process_string(str, salt)
     salt = salt or 27
