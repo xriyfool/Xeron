@@ -63,25 +63,67 @@ if game.PlaceId == 100010170789226 then
     local success, err = xpcall(function()
         
     do -- Adonis Anti-Cheat Bypass
-        local adonis = game:GetService("CoreGui"):FindFirstChild("Adonis")
-        if adonis then
-            local ac = adonis:FindFirstChild("AntiCheat")
-            if ac then
-                ac:Destroy()
+  local adonis = game:GetService("CoreGui"):FindFirstChild("Adonis") if adonis then local ac = adonis:FindFirstChild("AntiCheat") if ac then ac:Destroy() end end end
+        LPH_NO_VIRTUALIZE(function()
+            if game and not game:IsLoaded() then
+                repeat wait() until game:IsLoaded()
             end
-        end
+
+            local old_identity = getthreadidentity()
+
+            setthreadidentity(2) -- prevents "Adonis_0x16471" kick
+
+            task.spawn(function()
+                local patched = 0
+
+                for _, func in ipairs(getgc(true)) do
+                    if typeof(func) == "function" and islclosure(func) then
+                        local ok, consts = pcall(debug.getconstants, func)
+                        if ok and consts and #consts <= 2 then
+                            for i, c in ipairs(consts) do
+                                if tostring(c):lower():find("script") == nil and tostring(c):lower():find("rbx") == nil then
+                                    local src = debug.info(func, "s") or ""
+                                    if src:find("Anti") or src:lower():find("core") then
+                                        hookfunction(func, function(...)
+                                            warn("dont crash my nigga")
+                                            return
+                                        end)
+                                        patched += 1
+                                    end
+                                end
+                            end
+                        end
+                    end
+                end
+                warn("crash loop patch complete:", patched)
+            end)
+
+            task.defer(function()
+                for _, v in getgc(true) do
+                    if typeof(v) == "table" and rawget(v, "Kill") and typeof(v.Kill) == "function" then
+                        hookfunction(v.Kill, function(...)
+                            warn("kill() blocked imagine")
+                            return
+                        end)
+                    end
+                end
+            end)
+
+            local old_debug_info = debug.info
+            hookfunction(debug.info, newcclosure(function(func, what)
+                if typeof(func) == "function" and debug.info(func, "s") and debug.info(func, "s"):find("Core.Anti") then
+                    if what == "n" then return "Detected" end
+                    if what == "f" then return func end
+                    if what == "s" then return debug.info(func, "s") end
+                    if what == "l" then return debug.info(func, "l") end
+                    if what == "a" then return debug.info(func, "a") end
+                end
+                return old_debug_info(func, what)
+            end))
+
+            setthreadidentity(old_identity) -- restore the old identity
+        end)()
     end
-
-
-    
- LPH_NO_VIRTUALIZE(function()
-    if game and not game:IsLoaded() then
-        repeat
-            wait()
-        until game:IsLoaded()
-    end
-end)
-
 
     local start = os.clock()
     do
