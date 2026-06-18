@@ -9,7 +9,7 @@ if gameId == 1087859240 then
 elseif gameId == 7359098240 then
     pcall(function()
         loadstring(game:HttpGet(
-            "https://raw.githubusercontent.com/xriyfool/Xeron/main/ROGUE_BATTLEGROUNDS/rlbtest.lua",
+            "https://raw.githubusercontent.com/xriyfool/Xeron/main/ROGUE/rogue_ui.lua",
             true
         ))()
     end)
