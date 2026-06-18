@@ -62,7 +62,15 @@ if game.PlaceId == 100010170789226 then
 
     local success, err = xpcall(function()
         
-    do
+    do -- Adonis Anti-Cheat Bypass
+        local adonis = game:GetService("CoreGui"):FindFirstChild("Adonis")
+        if adonis then
+            local ac = adonis:FindFirstChild("AntiCheat")
+            if ac then
+                ac:Destroy()
+            end
+        end
+    end
 
     local start = os.clock()
     do
